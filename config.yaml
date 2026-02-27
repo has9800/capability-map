@@ -1,0 +1,29 @@
+model:
+  name: "EleutherAI/gpt-j-6B"
+  device: "cuda"
+  dtype: "float32"
+  debug_model: "EleutherAI/gpt-neo-125m"
+  debug: false
+
+data:
+  reasoning_path: "data/reasoning.json"
+  recall_path: "data/recall.json"
+  syntax_path: "data/syntax.json"
+  honesty_path: "data/honesty.json"
+
+patch:
+  n_bootstrap: 1000
+  significance_threshold: 0.05
+
+prune:
+  batch_size_plateau: 10
+  batch_size_cliff: 1
+  accuracy_floor: 0.0
+  n_random_baselines: 5
+
+overlap:
+  importance_percentile: 80
+  require_significant: true
+
+output:
+  dir: "./results"
