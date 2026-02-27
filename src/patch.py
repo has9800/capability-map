@@ -55,6 +55,10 @@ def _collect_attribution_effects(model, clean_prompt: str, corrupted_prompt: str
             clean_z = clean_cache[hook_name]
             corrupted_z = cache_dict[hook_name]
             grad_z = cache_dict[f"{hook_name}_grad"]
+            min_seq = min(clean_z.shape[1], corrupted_z.shape[1])
+            clean_z = clean_z[:, :min_seq]
+            corrupted_z = corrupted_z[:, :min_seq]
+            grad_z = grad_z[:, :min_seq]
             delta = clean_z - corrupted_z
             head_effects = (grad_z * delta).sum(dim=(0, 1, 3))
             effects.append(head_effects)
@@ -89,6 +93,10 @@ def _collect_attribution_effects(model, clean_prompt: str, corrupted_prompt: str
             grad_z = corrupted_z.grad
             if grad_z is None:
                 raise RuntimeError(f"Missing gradient for {hook_name}; attribution patching failed")
+            min_seq = min(clean_z.shape[1], corrupted_z.shape[1])
+            clean_z = clean_z[:, :min_seq]
+            corrupted_z = corrupted_z[:, :min_seq]
+            grad_z = grad_z[:, :min_seq]
             delta = clean_z - corrupted_z.detach()
             head_effects = (grad_z * delta).sum(dim=(0, 1, 3))
             effects.append(head_effects)
