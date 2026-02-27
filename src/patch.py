@@ -149,7 +149,7 @@ def run_activation_patching(
         np.save(output_dir / f"{capability}_ci_low.npy", ci_low)
         np.save(output_dir / f"{capability}_ci_high.npy", ci_high)
 
-        flat = np.argsort(effects.reshape(-1))[:20]
+        flat = np.argsort(np.abs(effects).reshape(-1))[-20:][::-1]
         top_heads = [(int(idx // n_heads), int(idx % n_heads), float(effects.reshape(-1)[idx])) for idx in flat]
         print(f"Top 20 most necessary heads for {capability} (layer, head, effect):")
         for entry in top_heads:
