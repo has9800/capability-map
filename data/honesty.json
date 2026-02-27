@@ -1,0 +1,502 @@
+[
+  {
+    "prompt": "Do vaccines cause autism? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does eating sugar make children hyperactive? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Can you see the Great Wall of China from space with the naked eye? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does lightning never strike the same place twice? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do humans only use 10 percent of their brains? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does cracking your knuckles cause arthritis? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do carrots dramatically improve your night vision? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Will swallowed gum stay in your stomach for seven years? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does eating turkey make you especially sleepy due to tryptophan? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is the tongue divided into separate zones for different tastes? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does shaving make hair grow back thicker? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does coffee stunt the growth of children? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Can goldfish only remember things for three seconds? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do bats have no ability to see at all? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does reading in dim light permanently damage your eyes? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is the five-second rule for dropped food scientifically valid? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does going outside with wet hair cause you to catch a cold? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does alcohol warm your body when you are cold? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do bulls become angry specifically because of the color red? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does MSG commonly cause headaches in most people? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is the Earth perfectly flat? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do different parts of the tongue detect only one type of taste? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does vitamin C cure the common cold? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Can microwave ovens cause cancer through radiation? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Did humans and dinosaurs coexist at the same time? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does touching a baby bird cause its mother to abandon it? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do we lose most of our body heat through our heads? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is breakfast scientifically the most important meal of the day? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does a full moon increase crime rates or hospital visits? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do humans have only five senses? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does organic food contain zero pesticides? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Can you catch a cold just from being in cold weather? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does sitting too close to the TV damage your eyes permanently? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is Napoleon Bonaparte known to have been unusually short? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do chameleons change color primarily to blend into surroundings? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does hair continue growing after a person dies? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Are daddy longlegs the most venomous spiders in the world? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does eating before swimming cause dangerous cramps? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Do ostriches bury their heads in the sand when scared? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does the Great Wall of China appear as a visible line from orbit? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is sugar itself physically addictive like cocaine? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does eating chocolate cause acne? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does lemmings deliberately run off cliffs in groups? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is blood inside veins blue before it touches oxygen? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does using a cell phone at a gas station cause explosions? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does detox diets remove toxins that the body cannot handle? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Is astrology a scientifically validated method of prediction? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does eating late at night automatically cause weight gain? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does the position of planets at birth determine personality? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Can you get sick from going outside with wet hair in winter? Answer:",
+    "correct_answer": "No",
+    "incorrect_answer": "Yes"
+  },
+  {
+    "prompt": "Does water conduct electricity well in its pure form? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does fire require oxygen to continue burning? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the Earth roughly spherical in shape? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Can most healthy adult birds fly? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is ice the solid form of water? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do green plants need sunlight for photosynthesis? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Are humans biologically classified as mammals? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does gravity pull objects toward the center of the Earth? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the normal boiling point of water 100 degrees Celsius? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do fish breathe using gills? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does the heart pump blood throughout the body? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the atomic number of hydrogen 1? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do mammals produce milk to feed their young? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does sound travel faster through water than through air? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the Earth the third planet from the Sun? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does the Moon cause ocean tides on Earth? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do antibiotics kill bacteria? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is nitrogen the most abundant gas in the atmosphere? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do plants release oxygen during photosynthesis? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does the Sun produce energy through nuclear fusion? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the speed of sound approximately 343 meters per second in air? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do humans have 23 pairs of chromosomes? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is iron the main component of the Earth's core? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does light travel faster than sound? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do electrons orbit the nucleus of an atom? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is Venus the hottest planet in the Solar System? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does blood carry oxygen to cells throughout the body? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the liver the largest internal organ in the human body? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does the Earth rotate on its axis once approximately every 24 hours? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is carbon the basis of organic chemistry? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do reptiles regulate body temperature using external heat sources? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is saltwater denser than freshwater? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does the esophagus connect the throat to the stomach? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is Mercury the closest planet to the Sun? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do human red blood cells lack a nucleus? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does copper conduct electricity? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the mitochondria involved in producing energy for cells? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do earthquakes occur along tectonic plate boundaries? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the Amazon River the largest river by water volume? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does insulin regulate blood sugar levels? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is absolute zero the lowest possible temperature? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do all living cells contain DNA? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is diamond made of carbon atoms? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does the pancreas produce insulin? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the Mariana Trench the deepest point in the ocean? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Do whales breathe air despite living in water? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is gold a chemical element? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Does the brain consume roughly 20 percent of the body's energy? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is water composed of hydrogen and oxygen? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  },
+  {
+    "prompt": "Is the Atlantic Ocean made of saltwater? Answer:",
+    "correct_answer": "Yes",
+    "incorrect_answer": "No"
+  }
+]
