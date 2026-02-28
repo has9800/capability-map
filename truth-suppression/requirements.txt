@@ -1,6 +1,6 @@
 torch
 transformers
-sae-lens
+sparsify
 matplotlib
 seaborn
 numpy

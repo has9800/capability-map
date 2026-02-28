@@ -9,7 +9,7 @@ from pathlib import Path
 import torch
 
 from dataset import get_prompt_pairs
-from sae_analysis import build_sae_context, run_dataset_analysis, save_results
+from sae_analysis import NUM_LAYERS, build_sae_context, run_dataset_analysis, save_results
 from visualize import create_all_plots
 
 
@@ -17,7 +17,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--top-k", type=int, default=100)
-    parser.add_argument("--max-layers", type=int, default=40)
+    parser.add_argument("--max-layers", type=int, default=NUM_LAYERS)
     parser.add_argument("--output", default="truth-suppression/results/sae_results.json")
     parser.add_argument("--plot-dir", default="truth-suppression/results")
     args = parser.parse_args()
@@ -26,9 +26,9 @@ def main() -> None:
     pairs = get_prompt_pairs()
     print(f"Loaded {len(pairs)} prompt pairs.")
 
-    print("[2/4] Resolving SAE release and loading SAEs...")
+    print("[2/4] Loading Sparsify SAEs...")
     context = build_sae_context(device=args.device, max_layers=args.max_layers)
-    print(f"Using release: {context.release}")
+    print(f"Using SAE repo: {context.sae_repo}")
     print(f"Using model: {context.model_name}")
     print(f"Layers covered: {context.available_layers}")
 

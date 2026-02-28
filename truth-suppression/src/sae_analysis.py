@@ -5,98 +5,97 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Dict, List, Sequence, Tuple
 
 import numpy as np
 import torch
-from sae_lens import SAE
+from sparsify import Sae
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from dataset import PromptPair
 
-RELEASE_CANDIDATES = [
-    "pythia-1.4b-deduped-res-sm",
-    "pythia-160m-deduped-res-sm",
-    "pythia-70m-deduped-res-sm",
-]
-MODEL_NAME_BY_RELEASE = {
-    "pythia-1.4b-deduped-res-sm": "EleutherAI/pythia-1.4b-deduped",
-    "pythia-160m-deduped-res-sm": "EleutherAI/pythia-160m-deduped",
-    "pythia-70m-deduped-res-sm": "EleutherAI/pythia-70m-deduped",
-}
+SAE_REPO = "EleutherAI/sae-pythia-410m-65k"
+MODEL_NAME = "EleutherAI/pythia-410m"
+NUM_LAYERS = 24
+D_MODEL = 1024
+NUM_SAE_FEATURES = 65536
 
 
 @dataclass
 class SAEContext:
-    release: str
+    sae_repo: str
     model_name: str
     available_layers: List[int]
-    sae_by_layer: Dict[int, SAE]
-
-
-def try_load_first_layer(release: str, device: str) -> bool:
-    try:
-        SAE.from_pretrained(release=release, sae_id="blocks.0.hook_resid_post", device=device)
-        return True
-    except Exception:
-        return False
-
-
-def resolve_release(device: str = "cpu", candidates: Sequence[str] = RELEASE_CANDIDATES) -> str:
-    for release in candidates:
-        if try_load_first_layer(release=release, device=device):
-            return release
-    raise RuntimeError(f"No usable SAE release found in candidates: {candidates}")
+    sae_by_layer: Dict[int, Sae]
 
 
 def load_model(model_name: str, device: str) -> Tuple[AutoTokenizer, AutoModelForCausalLM]:
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(model_name)
+
+    torch_dtype = torch.float16 if device.startswith("cuda") else torch.float32
+    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch_dtype)
     model.to(device)
     model.eval()
     return tokenizer, model
 
 
-def discover_layers(release: str, max_layers: int, device: str = "cpu") -> List[int]:
+def discover_layers(sae_repo: str, max_layers: int, device: str = "cpu") -> List[int]:
     layers: List[int] = []
     for layer in range(max_layers):
-        sae_id = f"blocks.{layer}.hook_resid_post"
+        hookpoint = f"layers.{layer}"
         try:
-            SAE.from_pretrained(release=release, sae_id=sae_id, device=device)
+            sae = Sae.load_from_hub(sae_repo, hookpoint=hookpoint)
+            sae.to(device)
             layers.append(layer)
         except Exception:
             continue
     return layers
 
 
-def load_saes(release: str, layers: Iterable[int], device: str) -> Dict[int, SAE]:
-    saes: Dict[int, SAE] = {}
+def load_saes(sae_repo: str, layers: Sequence[int], device: str) -> Dict[int, Sae]:
+    saes: Dict[int, Sae] = {}
     for layer in layers:
-        sae_id = f"blocks.{layer}.hook_resid_post"
-        sae, _, _ = SAE.from_pretrained(release=release, sae_id=sae_id, device=device)
+        hookpoint = f"layers.{layer}"
+        sae = Sae.load_from_hub(sae_repo, hookpoint=hookpoint)
+        sae.to(device)
         sae.eval()
         saes[layer] = sae
     return saes
 
 
-def build_sae_context(device: str = "cpu", max_layers: int = 40) -> SAEContext:
-    release = resolve_release(device=device)
-    model_name = MODEL_NAME_BY_RELEASE[release]
-    layers = discover_layers(release=release, max_layers=max_layers, device=device)
+def build_sae_context(device: str = "cpu", max_layers: int = NUM_LAYERS) -> SAEContext:
+    layers = discover_layers(sae_repo=SAE_REPO, max_layers=max_layers, device=device)
     if not layers:
-        raise RuntimeError(f"No layers found for SAE release {release}.")
-    sae_by_layer = load_saes(release=release, layers=layers, device=device)
-    return SAEContext(release=release, model_name=model_name, available_layers=layers, sae_by_layer=sae_by_layer)
+        raise RuntimeError(f"No layers found for SAE repo {SAE_REPO}.")
+    sae_by_layer = load_saes(sae_repo=SAE_REPO, layers=layers, device=device)
+    return SAEContext(
+        sae_repo=SAE_REPO,
+        model_name=MODEL_NAME,
+        available_layers=layers,
+        sae_by_layer=sae_by_layer,
+    )
+
+
+@torch.inference_mode()
+def extract_features_for_layer(sae: Sae, hidden_state: torch.Tensor, top_k: int = 100) -> Dict[int, float]:
+    """Extract top-k SAE features from a single hidden state vector."""
+    output = sae.encode(hidden_state.unsqueeze(0))
+    indices = output.top_indices[0].detach().cpu().tolist()
+    acts = output.top_acts[0].detach().cpu().tolist()
+
+    feature_map = dict(zip(indices, acts))
+    sorted_feats = sorted(feature_map.items(), key=lambda x: abs(x[1]), reverse=True)[:top_k]
+    return dict(sorted_feats)
 
 
 @torch.inference_mode()
 def extract_topk_features(
     model: AutoModelForCausalLM,
     tokenizer: AutoTokenizer,
-    sae_by_layer: Dict[int, SAE],
+    sae_by_layer: Dict[int, Sae],
     prompt: str,
     layers: Sequence[int],
     top_k: int,
@@ -108,13 +107,8 @@ def extract_topk_features(
     result: Dict[int, Dict[int, float]] = {}
 
     for layer in layers:
-        resid_post = hidden_states[layer + 1][:, -1, :]
-        acts = sae_by_layer[layer].encode(resid_post).squeeze(0)
-        k = min(top_k, acts.shape[0])
-        values, indices = torch.topk(torch.abs(acts), k=k)
-        _ = values  # keep symmetry with explicit indexing below
-        feature_map = {int(idx): float(acts[idx].item()) for idx in indices}
-        result[layer] = feature_map
+        resid_post = hidden_states[layer + 1][:, -1, :].squeeze(0)
+        result[layer] = extract_features_for_layer(sae=sae_by_layer[layer], hidden_state=resid_post, top_k=top_k)
     return result
 
 
@@ -152,7 +146,7 @@ def run_dataset_analysis(
     top_k: int = 100,
 ) -> dict:
     tokenizer, model = load_model(context.model_name, device=device)
-    d_sae_by_layer = {layer: int(context.sae_by_layer[layer].cfg.d_sae) for layer in context.available_layers}
+    d_sae_by_layer = {layer: int(context.sae_by_layer[layer].num_latents) for layer in context.available_layers}
 
     pair_results = []
     aggregate_diffs: Dict[int, np.ndarray] = {
@@ -217,7 +211,7 @@ def run_dataset_analysis(
         }
 
     return {
-        "release": context.release,
+        "sae_repo": context.sae_repo,
         "model_name": context.model_name,
         "available_layers": context.available_layers,
         "top_k": top_k,
